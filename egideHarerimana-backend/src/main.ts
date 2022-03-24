@@ -4,7 +4,7 @@ import { prisma } from "./db/prisma";
 import { transactionsRouter } from "./routes/transactions";
 import { usersRouter } from "./routes/users";
 
-const app = express()
+export const app = express()
 
 config()
 
