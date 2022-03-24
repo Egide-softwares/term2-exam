@@ -4,10 +4,12 @@
   "description": "Back-end for electricity billing system",
   "main": "./src/main.ts",
   "scripts": {
-	  "generate": "npx prisma generate",
+    "generate": "npx prisma generate",
     "start:dev": "nodemon",
     "build": "rimraf ./build && tsc",
-    "start": "npm run generate && npm run build && node build/main.js"
+    "start": "npm run generate && npm run build && node build/main.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "repository": "https://github.com/Egide-softwares/egideHarerimana-backend.git",
   "author": "Harerimana Egide <egideharerimana085@gmail.com>",
@@ -30,5 +32,11 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "supertest": "^6.2.2",
+    "ts-jest": "^27.1.3"
   }
 }
