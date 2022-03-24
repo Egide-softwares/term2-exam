@@ -32,6 +32,7 @@ services:
       context: ./egideHarerimana-backend
       dockerfile: ./Dockerfile
     restart: always
+    hostname: api
     environment:
       NODE_ENV: production
       DATABASE_URL: mysql://egide:dbadmin_123@localhost:3308/billing_system
