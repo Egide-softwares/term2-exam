@@ -19,19 +19,31 @@ services:
     image: egide085/billingsystem-ngnix
     depends_on:
       - api
-      # - client
+      - client
     restart: always
     build:
       context: ./nginx
       dockerfile: ./Dockerfile.dev
     ports:
       - '3050:80'
+  client: 
+    image: egide085/billingsystem-frontend
+    hostname: client
+    command: yarn start
+    build: 
+      context: ./client
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./client:/app
+    ports:
+      - '3000:3000'
   api:
     image: egide085/billingsystem-apis
     build:
       context: ./egideHarerimana-backend
-      dockerfile: ./Dockerfile
+      dockerfile: ./Dockerfile.dev
     restart: always
+    hostname: api
     environment:
       NODE_ENV: production
       DATABASE_URL: mysql://egide:dbadmin_123@localhost:3308/billing_system
