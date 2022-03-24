@@ -1,0 +1,23 @@
+FROM node:lts-alpine
+
+ENV NODE_ENV=development
+ENV DATABASE_URL=mysql://egide:dbadmin_123@localhost:3306/billing_system
+ENV JWT_SECRET=billing_system_secret124
+
+WORKDIR /usr/src/app
+
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+
+RUN npm install --production && mv node_modules ../
+
+RUN npm run generate
+
+COPY . .
+
+EXPOSE 5000
+
+RUN chown -R node /usr/src/app
+
+USER node
+
+CMD ["npm", "start:dev"]

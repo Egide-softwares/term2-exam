@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+  mysql:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_USER: egide
+      MYSQL_PASSWORD: dbadmin_123
+      MYSQL_DATABASE: billing_system
+    ports:
+      - '3308:3306'
+  nginx:
+    image: egide085/ngnix
+    depends_on:
+      - api
+      # - client
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '3050:80'
+  api:
+    image: egide085/billingsystem-apis
+    build:
+      context: egideHarerimana-backend
+      dockerfile: ./Dockerfile
+    restart: always
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: mysql://egide:dbadmin_123@localhost:3308/billing_system
+      JWT_SECRET: billing_system_secret124
+    ports:
+      - '5000:5000'
