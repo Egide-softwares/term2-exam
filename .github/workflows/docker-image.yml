@@ -38,11 +38,11 @@ jobs:
       # Runs a single command using the runners shell
       - name: Docker build
         run: |
-          docker build ./ngnix -t egide085/billingsystem-ngnix
+          docker build ./nginx -t egide085/billingsystem-nginx
           docker build ./egideHarerimana-backend -t egide085/billingsystem-apis
           docker build ./mysql -t egide085/mysql
       - name: Docker push
         run: |
-          docker push egide085/billingsystem-ngnix
+          docker push egide085/billingsystem-nginx
           docker push egide085/billingsystem-apis
           docker push egide085/mysql
