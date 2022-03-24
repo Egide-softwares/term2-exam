@@ -9,8 +9,7 @@ services:
       context: ./mysql
       dockerfile: ./Dockerfile
     environment:
-      MYSQL_ROOT_PASSWORD: 
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_ROOT_PASSWORD: admin
       MYSQL_USER: egide
       MYSQL_PASSWORD: dbadmin_123
       MYSQL_DATABASE: billing_system
